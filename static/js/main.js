@@ -459,7 +459,8 @@ function require_login(direct) {
    * direct 为 true 时，直接跳到登录页，不进行检查
    * */
   if (!direct && getCookie("hera_sid") && getCookie("user_info")) return false;
-  window.location.assign("/pages/login.html?next=" + encodeURIComponent(window.location.href));
+  window.parent.location.assign("../../pages/login.html?next=" + encodeURIComponent(window.location.href));
+
   return true;
 }
 $.ajaxSetup({
