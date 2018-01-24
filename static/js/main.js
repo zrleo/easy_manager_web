@@ -1,12 +1,7 @@
 jQuery.support.cors = true;
 // 全局变量
-var SECURECODE_HOST = "";
-var COMPANY_HOST = "";
-var PRODUCT_HOST="";
-var ACTIVITY_HOST="";
-var STATIS_HOST = "";
-var M_HOST = "";
-var DOMAIN = "";
+var DOMAIN = "127.0.0.1";  //本地开发环境
+
 
 var ERRORCODE = {
   SUCCESS: 0,
@@ -41,7 +36,7 @@ var ERRORCODE = {
 
 function logout (){
   $.ajax({
-    url : COMPANY_HOST + '/api/hera/account/logout',
+    url : DOMAIN + '/api/test_manager/account_manager/logout',
     type : 'POST',
     processData: false,
     contentType: false,
@@ -53,7 +48,7 @@ function logout (){
       delCookie("hera_sid", DOMAIN);
       delCookie("user_info", DOMAIN);
       delCookie("audit_status", DOMAIN);
-      window.location.href = "/pages/login.html"
+      window.location.href = "/pages/account/login.html"
     }
   });
 }
@@ -459,7 +454,7 @@ function require_login(direct) {
    * direct 为 true 时，直接跳到登录页，不进行检查
    * */
   if (!direct && getCookie("hera_sid") && getCookie("user_info")) return false;
-  window.parent.location.assign("../../pages/login.html?next=" + encodeURIComponent(window.location.href));
+  window.parent.location.assign("../../pages/account/login.html?next=" + encodeURIComponent(window.parent.location));
 
   return true;
 }
