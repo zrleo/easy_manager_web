@@ -1,0 +1,311 @@
+body.form{
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+/*右侧展示图片*/
+.banner-img.register{
+    width: 604px;
+    height: 584px;
+    border: 1px solid #e5e6e7;
+}
+.banner-img.login{
+    width: 604px;
+    height: 502px;
+    background: url("/static/img/login/banner.png") no-repeat center;
+}
+
+.top-banner-register{
+    width: 100%;
+    height: 130px;
+    box-sizing: border-box;
+    background: url("/static/img/register/banner.png") no-repeat center left;
+}
+.register-container{
+    width: 1000px;
+    margin: 0 auto;
+}
+.register-container.middle{
+    height: 100%;
+    position: relative;
+}
+.banner-box-register{
+    width: 222px;
+    height: 72px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+    margin-top: -36px;
+}
+.register-container.form-box{
+    padding: 82px 0;
+}
+.register-form{
+    margin: 100px auto;
+
+    width: 354px;
+    border: 1px solid #e5e6e7;
+}
+.find-password-form{
+    width: 1000px;
+    border: 1px solid #e5e6e7;
+}
+.register-title{
+    height: 66px;
+    line-height: 66px;
+    font-size: 20px;
+    color: #333333;
+    text-align: left;
+    padding: 0 26px;
+    border-bottom: 1px solid #e5e6e7;
+    margin: 0;
+}
+form.register{
+    padding: 0 26px 38px 26px;
+}
+form.find-width{
+    width: 396px;
+    padding: 50px 0 74px 0;
+    margin-left: 200px;
+}
+form.find-width .tips-title{
+    margin-top: 20px;
+}
+form .input-title{
+    font-size: 14px;
+    color: #333333;
+    padding: 26px 0 4px 0;
+    position: relative;
+}
+form .input-title-img{
+    font-size: 14px;
+    color: #333333;
+    padding: 26px 0 7px 0;
+    position: relative;
+}
+form .input-title.find-password{
+    line-height: 32px;
+    padding: 0;
+    position: relative;
+}
+form .input-title .error-tips{
+    color: #f25c5a;
+}
+/*错误提示信息-->右侧*/
+form.error-tips-right .input-title span.error-tips{
+    position: absolute;
+    top: 0;
+    right: -570px;
+    width: 250px;
+}
+/*错误提示信息-->底部*/
+form.error-tips-bottom .input-title span.error-tips{
+    width: 100%;
+    position: absolute;
+    top: 84px;
+    left: 7px;
+}
+.input-in{
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #e5e6e7;
+    height: 32px;
+    /*line-height: 32px;*/
+    padding-left: 7px;
+    font-size: 14px;
+}
+.input-in.find-password{
+    width: 300px;
+    margin-left: 12px;
+}
+.input-in.find-password.no-padding{
+    padding-left: 0;
+    border: none;
+}
+/*找回密码*/
+form.find-width .code-input{
+    margin-left: 12px;
+}
+/*end*/
+.input-in.code-input{
+    width: 216px;
+}
+.input-in.img-code-input{
+    width: 206px;
+}
+.input-in.error-input{
+    border: 1px solid #ef5a50;
+}
+/*找回密码*/
+form.find-width .send-message{
+    margin-left: 6px;
+}
+/*end*/
+.send-message{
+    width: 78px;
+    font-size: 14px;
+    color: #999;
+    box-sizing: border-box;
+    border:1px solid #e5e6e7;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background-color: #ffffff;
+    outline: none;
+    cursor: pointer;
+}
+.img-code{
+    width: 88px;
+    height: 32px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.img-code img{
+    vertical-align: top;
+}
+p.agree-register{
+    font-size: 14px;
+    color: #999999;
+    margin-top: 30px !important;
+}
+p.agree-register a.agree-text{
+    color: #5195E1;
+    cursor: pointer;
+}
+p.agree-register a.agree-text:visited,p.agree-register a.agree-text:link{
+    text-decoration: none;
+}
+p.agree-register .forget-password{
+    cursor: pointer;
+}
+p.agree-register .checkbox{
+    width: 14px;
+    height: 14px;
+    border: 1px solid #e5e6e7;
+    margin: 3px 6px 0 0;
+    cursor: pointer;
+}
+.agree-register .checkbox.agree-this{
+    background: url("/static/img/register/agree.png") no-repeat center;
+}
+.submit-btn{
+    width: 300px;
+    height: 40px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    background: #1BB393;
+    margin: 20px auto;
+}
+.submit-btn.disabled{
+    background: #b1b1b1;
+    cursor: not-allowed;
+}
+p.bottom-login{
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    /*margin-top: 16px;*/
+}
+.bottom-login .login-url{
+    color: #5195E1;
+}
+/*-修改input默认字体样式-*/
+*::-webkit-input-placeholder {
+    color: #AEABA9;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+}
+/*tips result*/
+.register-tips{
+    padding: 106px 0;
+}
+.form-tips-box .first-tips-text{
+    font-size: 20px;
+    color: #333333;
+    margin-top: 20px;
+}
+.form-tips-box .second-tips-text{
+    font-size: 14px;
+    color: #999999;
+    margin-top: 10px;
+}
+.form-tips-box .success-url{
+    background:#1bb393;
+    width: 230px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #ffffff;
+    margin-top: 36px;
+}
+.form-tips-box .success-url.has-radius{
+    border-radius: 4px;
+}
+/*agreement*/
+body.form.agreement{
+    min-height: 100vh;
+    padding-bottom: 80px;
+    position: relative;
+}
+.agreement-title{
+    font-size: 20px;
+    color: #333333;
+    margin: 37px 0 30px 0;
+}
+.agreement-content{
+    font-size: 14px;
+    color: #333333;
+}
+body.agreement .under-company{
+    width: 100%;
+    font-size: 13px;
+    color: #999999;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+}
+/*关联样式*/
+.form-control-sec {
+    width: 100%;
+    padding: 0 2px;
+    border-radius: 4px;
+    background: #eaeaea;
+    font-size: 14px;
+    color: #666;
+    border: 1px solid #e5e6e7;
+}
+.form-control-sec:focus{
+    outline: none;
+}
+.form-add-img{
+    width: 135px;
+    height: 135px;
+    position: relative;
+    margin-bottom: 4px;
+}
+.form-add-img img{
+    max-width: 100%;
+}
+form.error-tips-bottom .input-title.has-img span.error-tips{
+    position: absolute;
+    left: 7px;
+    top: 208px;
+    width: 200px;
+}
+.form-add-img .button-upload-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.form-add-img  .add-file-inp{
+    opacity: 0;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
