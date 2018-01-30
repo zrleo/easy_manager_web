@@ -43,7 +43,6 @@ body.form{
 }
 .register-form{
     margin: 100px auto;
-
     width: 354px;
     border: 1px solid #e5e6e7;
 }
@@ -62,7 +61,7 @@ body.form{
     margin: 0;
 }
 form.register{
-    padding: 0 26px 38px 26px;
+    padding: 0 9px 38px 9px;
 }
 form.find-width{
     width: 396px;

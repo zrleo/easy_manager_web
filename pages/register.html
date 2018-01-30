@@ -15,6 +15,7 @@
 <body>
 <div class="register-form">
         <span><h1 class="form-signin-heading">Test Manager System</h1></span>
+    <form method="post" action="" class="register" id="register-form">
         <label for="email" class="sr-only">Email</label>
         <input name="email" type="text" id="email" class="form-control" placeholder="请输入邮箱" required autofocus>
         <label for="inputUsername" class="sr-only">Username</label>
@@ -27,12 +28,13 @@
         <input name="is_password" type="password" id="reinputPassword" class="form-control" placeholder="请再次输入密码" required>
         <p style="color:red" class="hidden">{{error}}</p> <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit" >注册</button>
+    </form>
         <span><a href="account/login.html">已有帐号？立即登录！</a></span>
 </div>
 <script src="../static/libs/jquery.validate.min.js"></script>
 <script src="../static/libs/jquery/jquery.min.js"></script>
-<script src="../static/js/main.js"></script>
-<script src="../static/js/main-form.js"></script>
+<!--<script src="../static/js/main.js"></script>-->
+<!--<script src="../static/js/main-form.js"></script>-->
 <script>
    $(function () {
        $('#register-form').validate({
