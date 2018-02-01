@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../static/img/favicon.ico">
+    <title>首页</title>
+    <link href="../static/libs/inspinia/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/libs/inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../static/libs/inspinia/css/animate.css" rel="stylesheet">
+    <link href="../static/libs/inspinia/css/style.css" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+    <script src="../static/libs/inspinia/js/respond.src.js"></script>
+</head>
+<body id = "main" class="pace-done" onload="load()">
+<div style="width: 20%;float: left;height:100%">
+    <iframe id="iframeleftnav" src="base/leftnav.html" style="width:100%; height:100%;" frameborder="0" ></iframe>
+</div>
+<div style="width: 80%;float: right;height: 90%;">
+    <iframe id="iframeheader" src="base/header.html" height="10%" width="100%" frameborder="0"></iframe>
+    <iframe id="iframecenterav" name="iframecenterav" src="api/index.html" style="width:100%; height:100%" frameborder="0" ></iframe>
+</div>
+<div style="height: 10%"><iframe id="iframefooter" src="base/footer.html" width="100%" frameborder="0"></iframe></div>
+<!-- Mainly scripts -->
+<script src="../static/libs/jquery/jquery.min.js"></script>
+<script src="../static/libs/inspinia/js/bootstrap.min.js"></script>
+<script src="../static/libs/inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="../static/libs/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="../static/libs/inspinia/js/inspinia.js"></script>
+<script src="../static/libs/inspinia/js/plugins/pace/pace.min.js"></script>
+<script>
+    function load(){
+        var scrHeight = window.screen.availHeight;
+        document.getElementById("main").style.height=scrHeight+"px";
+    }
+</script>
+</body>
+</html>

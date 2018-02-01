@@ -12,23 +12,35 @@
     <link href="../../static/css/main-form.css" rel="stylesheet">
     <script src="../../static/libs/inspinia/js/respond.src.js"></script>
 </head>
-<body>
+<body class="form">
 <div class="register-form">
     <span><h1 class="form-signin-heading">Test Manager System</h1></span>
     <form class="register" method="post" action="" id="register-form">
         <label for="email" class="sr-only">Email</label>
-        <input name="username" type="text" id="email" class="form-control" placeholder="请输入邮箱" required autofocus>
+        <input name="email" type="text" id="email" class="form-control" placeholder="请输入邮箱" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
         <p style="color:red" class="hidden">{{error}}</p> <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <span><a href="register.html">没有帐号，立即注册</a></span>
     </form>
-        <span><a href="../register.html">没有帐号，立即注册</a></span>
 </div>
 <script>
-   $(function () {
-       $('#register-form').validate()
-   })
+    $(function () {
+        $('#register-form').click(function() {
+             $('.btn').click(function () {
+                 $.ajax({
+                     url : "http://localhost/api/test_manager/account_manager/login",
+                     type: "post",
+                     datatype: "json",
+                     data : $('#register-form').serialize(),
+                     success: function (data) {
+                         
+                     }
+                 })
+             })
+        })
+    })
 </script>
 </body>
 </html>

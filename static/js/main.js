@@ -1,6 +1,6 @@
 jQuery.support.cors = true;
 // 全局变量
-var DOMAIN = "127.0.0.1";  //本地开发环境
+var DOMAIN = "127.0.0.1:8001";  //本地开发环境
 
 
 var ERRORCODE = {
