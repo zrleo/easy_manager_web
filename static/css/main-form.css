@@ -1,7 +1,8 @@
 body.form{
     margin: 0;
     padding: 0;
-    background-color: #fff;
+    background-color: #F2F2F2;
+    /*background-image: url("../img/background.jpeg");*/
 }
 /*右侧展示图片*/
 .banner-img.register{
