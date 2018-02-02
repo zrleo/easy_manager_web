@@ -21,29 +21,48 @@
         <label for="inputPassword" class="sr-only">Password</label>
         <input name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
         <p style="color:red" class="hidden">{{error}}</p> <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button">登录</button>
         <span><a href="register.html">没有帐号，立即注册</a></span>
     </form>
 </div>
-<script>
+<script src="../../static/libs/jquery/jquery.min.js"></script>
+<script src="../../static/libs/jquery.validate.min.js"></script>
+<!--<script src="../../static/js/main.js"></script>-->
+<script src="../../static/js/main-form.js"></script>
+<script type="text/javascript">
     $(function () {
-        $('#register-form').click(function() {
-             $('.btn').click(function () {
-                 $.ajax({
-                     url : "http://localhost/api/test_manager/account_manager/login",
-                     type: "post",
-                     datatype: "json",
-                     data : $('#register-form').serialize(),
-                     success: function (data) {
-                         window.location.href = 'pages/main.html';
-                     },
-                     error: function () {
-                         alert("登录失败")
-                     }
-                 })
-             })
+        $(".btn").click(function () {
+            $.ajax({
+                type: "post",
+                dataType:"json",
+                url: "http://localhost/api/test_manager/account_manager/login",
+                data: $('#register-form').serialize(),
+                success: function (data) {
+                    window.location.href = '/pages/main.html';
+                },
+                error : function () {
+                    alert("登录失败")
+                }
+            });
         })
     })
+    // $(function () {
+    //     $('.btn').click(function () {
+    //         $.ajax({
+    //             url : "http://localhost/api/test_manager/account_manager/login",
+    //             type: "post",
+    //             datatype: "json",
+    //             data : $('#register-form').serialize(),
+    //             success: function (data) {
+    //                 window.location.href = 'pages/main.html';
+    //                  },
+    //             error: function () {
+    //                 alert("登录失败")
+    //                  }
+    //              });
+    //          })
+    // })
+
 </script>
 </body>
 </html>
