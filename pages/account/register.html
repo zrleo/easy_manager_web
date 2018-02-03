@@ -27,7 +27,7 @@
         <!--<label for="reinputPassword" class="sr-only">Confirm Password</label>-->
         <!--<input name="is_password" type="password" id="reinputPassword" class="form-control" placeholder="请再次输入密码" required>-->
         <p style="color:red" class="hidden">{{error}}</p> <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" >注册</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" >注册</button>
         <span><a href="login.html">已有帐号？立即登录！</a></span>
     </form>
 </div>
@@ -35,7 +35,7 @@
 <script src="../../static/libs/jquery.validate.min.js"></script>
 <!--<script src="../../static/js/main.js"></script>-->
 <script src="../../static/js/main-form.js"></script>
-<script>
+<script type="text/javascript">
    $(function () {
        // $('#register-form').validate({
        //     rules:{
@@ -74,15 +74,16 @@
        //         // errorElement: 'span',
        $('.btn').click(function(){
            $.ajax({
+               url: "http://localhost/api/test_manager/account_manager/registered",
                type: "post",
                dataType:"json",
-               url: "http://127.0.0.1/api/test_manager/account_manager/registered",
                data: $('#register-form').serialize(),
-               success: function (data) {
+               success: function () {
                    window.location.href = '/pages/account/login.html';
                },
                error : function () {
-                   alert("注册失败")
+                   alert("注册失败");
+                       window.location.href = 'pages/account/register.html';
                }
            });
        })
