@@ -10,13 +10,18 @@
     <link href="../../static/libs/inspinia/css/style.css" rel="stylesheet">
     <link href="../../static/css/main.css" rel="stylesheet">
     <script src="../../static/libs/inspinia/js/respond.src.js"></script>
+    <style type="text/css">
+        p{
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>添加项目</h2>
         <ol class="breadcrumb">
-            <li><a href="../api/index.html">首页</a></li>
+            <li><a href="../home.html">首页</a></li>
             <li><a href="add-project.html">添加项目</a></li>
         </ol>
     </div>
@@ -38,17 +43,20 @@
                         </div>
                         <div class="ibox-content">
 
-                                <form class="create-project" method="post">
+                                <form class="create-project" method="post" action="">
                                     <ul class="create-ul">
                                         <li>
+                                            <p class="input-title create-ul-h5">项目编号<span class="red-color">*</span></p>
+                                            <input type="text" placeholder="请输入项目编号" class="form-control input-lg create-inp create-inp-num" maxlength="30" id="project-id" name="project_id"/>
+                                        </li>
+                                        <li>
                                             <p class="input-title create-ul-h5">项目名称<span class="red-color">*</span></p>
-                                            <input type="text" placeholder="请输入项目名称" class="form-control input-lg create-inp create-inp-num" maxlength="30" id="project-name" name="name"/>
+                                            <input type="text" placeholder="请输入项目名称" class="form-control input-lg create-inp create-inp-num" maxlength="30" id="project-name" name="project_name"/>
                                         </li>
                                         <span style="margin: 2px"></span>
-                                        <button type="submit" class="btn btn-w-m btn-primary">创建项目</button>
+                                        <p><button type="button" class="btn btn-w-m btn-primary">创建项目</button></p>
                                     </ul>
                                 </form>
-
                         </div>
                     </div>
                 </div>
@@ -56,5 +64,27 @@
         </div>
     </div>
 </div>
+<script src="../../static/libs/jquery/jquery.min.js"></script>
+<script src="../../static/libs/jquery.validate.min.js"></script>
+<!--<script src="../../static/js/main.js"></script>-->
+<script src="../../static/js/main-form.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.btn').click(function () {
+            $.ajax({
+                url: "http://127.0.0.1/api/test_manager/project_manager/add_project",
+                type: "post",
+                datatype: "json",
+                data: $(".create-project").serialize(),
+                success: function (data) {
+                    window.location.href = '/pages/project/project_list.html';
+                },
+                error: function (data) {
+                    alert(data.message);
+                }
+            });
+        })
+    })
+</script>
 </body>
 </html>
