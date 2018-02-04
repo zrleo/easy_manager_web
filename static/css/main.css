@@ -9,6 +9,9 @@ body{
 button{
   outline: none !important;
 }
+.navbar-default {
+  background-color: #293846;
+}
 /*红色字体*/
 .red-text{
   color: #f25c5a;

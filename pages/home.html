@@ -3,8 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="../static/js/echarts.common.min.js"></script>
+    <style type="text/css">
+        #left {
+            margin: 50px;
+            float: left;
+        }
+        #middle {
+            float: left;
+            position: fixed;
+            margin: 20px;
+        }
+        #right {
+            float: right;
+        }
+    </style>
 </head>
 <body>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="left" style="width:25%;height:400px; "></div>
+    <div id="middle" style="width:25%;height:400px;"></div>
+    <div id="right" style="width: 25%;height:400px;"></div>
+</body>
+<script type="text/javascript">
+var myChartLeft = echarts.init(document.getElementById('left'));
+    option = {
+    series : [
+        {
+            name: '测试结果',
+            type: 'pie',
+            radius: '55%',
+            data:[
+                {value:235, name:'项目1'},
+                {value:274, name:'项目2'},
+                {value:310, name:'项目3'},
+                {value:335, name:'项目4'},
+                {value:400, name:'项目5'}
+            ]
+        }
+    ]
+};
+myChartLeft.setOption(option);
 
+var myChartmiddle = echarts.init(document.getElementById('middle'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '占位'
+            },
+            tooltip: {},
+            legend: {
+                data:['测试结果']
+            },
+            xAxis: {
+                data: ["项目1","项目1","项目1","项目1","项目1","项目1"]
+            },
+            yAxis: {},
+            series: [{
+                name: '通过率',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChartmiddle.setOption(option);
+
+var myChartRight = echarts.init(document.getElementById('right'));
+    option = {
+    legend: {},
+    tooltip: {},
+    dataset: {
+        // 提供一份数据。
+        source: [
+            ['product', '2015', '2016', '2017'],
+            ['Matcha Latte', 43.3, 85.8, 93.7],
+            ['Milk Tea', 83.1, 73.4, 55.1],
+            ['Cheese Cocoa', 86.4, 65.2, 82.5],
+            ['Walnut Brownie', 72.4, 53.9, 39.1]
+        ]
+    },
+    // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
+    xAxis: {type: 'category'},
+    // 声明一个 Y 轴，数值轴。
+    yAxis: {},
+    // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
+    series: [
+        {type: 'bar'},
+        {type: 'bar'},
+        {type: 'bar'}
+    ]
+}
+myChartRight.setOption(option);
+</script>
 </body>
 </html>
