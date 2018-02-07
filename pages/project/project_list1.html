@@ -10,7 +10,7 @@
     <link href="../../static/libs/inspinia/css/style.css" rel="stylesheet">
     <link href="../../static/css/main.css" rel="stylesheet">
     <script src="../../static/libs/inspinia/js/respond.src.js"></script>
-    <script src="../../static/js/vue.min.js"></script>
+    <script src="../js/vue.min.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -32,12 +32,12 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-12" id="projectData">
                                     
                                     <table class="table  table-bordered table-hover product-list-table" id="editable" >
                                         <thead>
                                         <tr>
-                                            <th>项目id</th>
+                                            <th>项目</th>
                                             <th>项目名称</th>
                                             <th>创建时间</th>
                                             <th>状态</th>
@@ -45,7 +45,13 @@
                                         </tr>
                                         </thead>
                                         <tbody id="show_list_id">
-
+											 <tr v-for ="(project,index) in projectData">
+					                          <td>{{project.project_id}}</td>
+					                      	 <td>{{project.project_name}}</td>
+					                      	 <td>{{project.created_time}}</td>
+					                      	 <td>{{project.last_update}}</td>
+					                      	 <td><button v-on:click="remove(project,index)">remove</button></td>
+					                    </tr>
                                         </tbody>
                                     </table>
 
@@ -88,5 +94,73 @@
 <script src="../../static/libs/inspinia/js/plugins/pace/pace.min.js"></script>
 <script src="../../static/js/main-form.js"></script>
 
+<script>
+
+$(function(){
+	/* $.ajax({
+        type: "post",
+        dataType:"json",
+        url: "http://localhost/api/test_manager/account_manager/registered",
+        data: $('#register-form').serialize(),
+        success: function (data) {
+                alert(data.msg_cn);
+        },
+       error : function () {
+           alert("注册失败")
+       }
+    }) */
+	$.ajax({
+        type: "get",
+        dataType:"json",
+        url: "http://localhost/api/test_manager/project_manager/project_list/",
+        data: {},
+        success: function (data) {
+        	new Vue({
+        		  el: '#projectData',
+        		  data: {
+        			   projectData:data.project_list
+        			  },
+        			  methods: {
+        				  remove: function (project,index) {
+        						this.projectData.splice(index, 1);
+        					  $.ajax({
+        					        type: "post",
+        					        dataType:"json",
+        					        url: "http://localhost/api/test_manager/project_manager/delete_project/",
+        					        data: {project_id:project.project_id},
+        					        success: function (data) {
+        					        	this.projectData.splice(index, 1);
+        					        },
+        					       error : function () {
+        					           alert("注册失败")
+        					       }
+        					    }) 
+        					  
+        				  }
+        				}
+        		  
+        		})
+        },
+       error : function () {
+           alert("注册失败")
+       }
+    }) 
+})
+/* function remove(projectId,index){
+	this.list.splice(index, 1);
+	$.ajax({
+        type: "get",
+        dataType:"json",
+        url: "http://localhost/api/test_manager/project_manager/delete_project/",
+        data: {projectId:project.projectId},
+        success: function (data) {
+        	splice(index, 1);
+        },
+       error : function () {
+           alert("注册失败")
+       }
+    }) 
+} */
+</script>
 </body>
 </html>
