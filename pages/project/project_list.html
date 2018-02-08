@@ -32,20 +32,26 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-lg-12">
-                                    
+                                <div class="col-lg-12" id="projectData">
                                     <table class="table  table-bordered table-hover product-list-table" id="editable" >
                                         <thead>
                                         <tr>
                                             <th>项目id</th>
                                             <th>项目名称</th>
                                             <th>创建时间</th>
-                                            <th>状态</th>
+                                            <th>更新时间</th>
                                             <th>操作</th>
                                         </tr>
                                         </thead>
                                         <tbody id="show_list_id">
-
+                                        <tr v-for ="(project,index) in projectData">
+                                            <td>{{project.project_id}}</td>
+                                            <td>{{project.project_name}}</td>
+                                            <td>{{project.created_time}}</td>
+                                            <td>{{project.last_update}}</td>
+                                            <td><button v-on:click="remove(project,index)" class="project_button_delete">删除</button>
+                                            <button><a href="add-project.html" class="project_button_edit">修改</a></button></td>
+                                        </tr>
                                         </tbody>
                                     </table>
 
@@ -73,6 +79,7 @@
         </div>
     </div>
 </div>
+</div>
 <!-- Mainly scripts -->
 <script src="../../static/libs/jquery/jquery.min.js"></script>
 <script src="../../static/libs/jquery.validate.min.js"></script>
@@ -82,11 +89,50 @@
 
 <script src="../../static/libs/inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="../../static/libs/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
 <!-- Custom and plugin javascript -->
 <script src="../../static/libs/inspinia/js/inspinia.js"></script>
 <script src="../../static/libs/inspinia/js/plugins/pace/pace.min.js"></script>
 <script src="../../static/js/main-form.js"></script>
-
+<script>
+    $(function () {
+        $.ajax({
+            type: 'get',
+            datatype: 'json',
+            data: {},
+            url: 'http://127.0.0.1/api/test_manager/project_manager/project_list/',
+            success: function (data) {
+                new Vue({
+                    el: '#projectData',
+                    data: {
+                        projectData:data.project_list,
+                    },
+                    methods: {
+                        remove: function (project, index) {
+                            var rowObject = this;
+                            deleteProject(rowObject, project, index);
+                        }
+                    }
+                })
+            },
+            error: function () {
+                alert('失败')
+            }
+        })
+    })
+    function deleteProject(rowObject, project, index) {
+        $.ajax({
+            type: 'post',
+            data:{project_id:project.project_id},
+            datatype:'json',
+            url:'http://127.0.0.1/api/test_manager/project_manager/delete_project/',
+            success:function (data) {
+                rowObject.projectData.splice(index, 1);
+            },
+            error: function () {
+                alert("删除失败")
+            }
+        })
+    }
+</script>
 </body>
 </html>
