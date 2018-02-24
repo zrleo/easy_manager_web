@@ -35,7 +35,7 @@
             $.ajax({
                 type: "post",
                 dataType:"json",
-                url: "http://localhost/api/test_manager/account_manager/login",
+                url: "http://127.0.0.1/api/test_manager/account_manager/login",
                 data: $('#register-form').serialize(),
                 success: function (data) {
                     window.location.href = '/pages/main.html';
