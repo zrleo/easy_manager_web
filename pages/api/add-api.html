@@ -45,8 +45,8 @@
                                             <li>
                                                 <div class="search-bar"></div>
                                                 请选择接口请求方法
-                                                <select class="form-control-sel m-b" name="request_method">
-                                                    <option value="">POST</option>
+                                                <select class="form-control-sel m-b" id="method_select" name="request_method" onclick="methodChange()">
+                                                    <option value="0">POST</option>
                                                     <option value="1">GET</option>
                                                     <option value="2">PUT</option>
                                                     <option value="10">DELETE</option>
@@ -62,11 +62,11 @@
                                             </li>
                                             <li>
                                                 <p class="input-title create-ul-h5">接口名称<span class="red-color">*</span></p>
-                                                <input type="text" placeholder="请输入接口名称" class="form-control input-lg create-inp create-inp-num" maxlength="30" id="api-name" name="api_name"/>
+                                                <input type="text" placeholder="请输入接口名称" class="form-control input-lg create-inp create-inp-num" id="api-name" name="api_name"/>
                                             </li>
                                             <li>
                                                 <p class="input-title create-ul-h5">URL<span class="red-color">*</span></p>
-                                                <input type="text" placeholder="请输入接口的URL" class="form-control input-lg create-inp create-inp-num" maxlength="13" id="api-url" name="api_url"/>
+                                                <input type="text" placeholder="请输入接口的URL" class="form-control input-lg create-inp create-inp-num" id="api-url" name="api_url"/>
                                                 <div class="prompt-box hidden"></div>
                                             </li>
                                             <li>
@@ -74,16 +74,21 @@
                                                 <input type="text" placeholder="请输入接口路径" class="form-control input-lg create-inp" id="api-path" name="api_path"/>
                                             </li>
                                             <li>
+                                                <p class="input-title create-ul-h5">期望结果<span class="red-color">*</span></p>
+                                                <input type="text" placeholder="请期望结果" class="form-control input-lg create-inp" id="expect_response_data" name="expect_response_data"/>
+                                            </li>
+                                            <li>
                                                 <p class="input-title create-ul-h5">接口参数<span class="red-color">*</span></p>
                                                 <div class="">
                                                     <span>key</span>
-                                                    <input type="text" class="form-control newadd" name="more_title" placeholder="添加key值"/>
+                                                    <input type="text" class="form-control newadd para_input para_key" placeholder="添加key值"/>
                                                     <span class="input-group-btn">
                                                         <button type="button" class="btn btn-outline btn-danger newadd-remove">删除</button>
                                                     </span>
                                                 </div>
                                                 <span>value</span>
-                                                <input type="text" placeholder="请输入value值" name="more_con" class="form-control input-lg newadd-con"/>
+                                                <input type="text" placeholder="请输入value值" class="form-control input-lg newadd-con para_input para_value"/>
+                                                <input class="para_div" style='width: 600px; height:50px;' onfocus=this.blur() name="request_data" >
                                             </li>
                                             <button type="button" class="btn btn-block btn-outline btn-success newadd-button">＋继续添加更多参数</button>
                                             <button type="button" class="btn btn-w-m btn-primary">添加接口</button>
@@ -134,8 +139,22 @@
 <script src="../../static/libs/inspinia/js/inspinia.js"></script>
 <script src="../../static/libs/inspinia/js/plugins/pace/pace.min.js"></script>
 <script>
+
+    $(function(){
+        $(".para_input").bind('input porpertychange',function(){
+            console.log("e");
+            var keyValue = $(".para_key").val();
+            var valueValue = $(".para_value").val();
+            $(".para_div").val(keyValue+ ":" + valueValue);
+        });
+    });
+
+
     function projectChange() {
-        $('#project_select option:selected').val();
+        $("#project_select option:selected").val();
+    }
+    function methodChange() {
+        $("#method_select option:selected").val();
     }
     $(function () {
         get_project_list();
@@ -212,6 +231,7 @@
                 url:"http://127.0.0.1/api/test_manager/api_manager/add_api/",
                 data:$("#create-form").serialize(),
                 success:function (data) {
+                    console.log(data);
                     window.location.href="/pages/api/api-list.html";
                 },
                 error:function () {
