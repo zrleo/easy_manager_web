@@ -49,8 +49,10 @@
                                             <td>{{project.project_name}}</td>
                                             <td>{{project.created_time}}</td>
                                             <td>{{project.last_update}}</td>
-                                            <td><button v-on:click="remove(project,index)" class="project_button_delete">删除</button>
-                                            <button><a href="add-project.html" class="project_button_edit">修改</a></button></td>
+                                            <td>
+                                                <button v-on:click="remove(project,index)" class="project_button_delete">删除</button>
+                                                <button><a href="add-project.html" class="project_button_edit">修改</a></button>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>

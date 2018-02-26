@@ -10,6 +10,7 @@
     <link href="../../static/libs/inspinia/css/style.css" rel="stylesheet">
     <link href="../../static/css/main.css" rel="stylesheet">
     <script src="../../static/libs/inspinia/js/respond.src.js"></script>
+    <script src="../../static/js/vue.min.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -21,7 +22,7 @@
             </div>
             <div class="col-sm-8">
                 <div class="title-action">
-                    <a href="../project/add-project.html" class="btn btn-primary create-product">创建项目</a>
+                    <a href="../api/add-api.html" class="btn btn-primary create-product">新建接口</a>
                 </div>
             </div>
         </div>
@@ -31,18 +32,36 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-12" id="apiData">
                                     <table class="table  table-bordered table-hover product-list-table" id="editable" >
                                         <thead>
                                         <tr>
                                             <th>项目名称</th>
                                             <th>接口名称</th>
-                                            <th>创建时间</th>
-                                            <th>状态</th>
+                                            <th>接口 URL</th>
+                                            <th>接口path</th>
+                                            <th>请求方法</th>
+                                            <th>期望结果</th>
+                                            <th>测试结果</th>
                                             <th>操作</th>
+
                                         </tr>
                                         </thead>
                                         <tbody id="show_list_id">
+                                        <tr v-for ="(api,index) in apiData">
+                                            <td>{{api.project_name}}</td>
+                                            <td>{{api.api_name}}</td>
+                                            <td>{{api.api_url}}</td>
+                                            <td>{{api.api_path}}</td>
+                                            <td>{{api.request_method}}</td>
+                                            <td>{{api.expect_response_data}}</td>
+                                            <td></td>
+                                            <td>
+                                                <button class="run" style="background-color: #1AB394">运行</button>
+                                                <button v-on:click="remove(project,index)" class="project_button_delete" style="background-color: firebrick">删除</button>
+                                                <button><a href="add-project.html" class="api_button_edit">修改</a></button>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                     <div>
@@ -80,40 +99,62 @@
 <!-- Custom and plugin javascript -->
 <script src="../../static/libs/inspinia/js/inspinia.js"></script>
 <script src="../../static/libs/inspinia/js/plugins/pace/pace.min.js"></script>
-<script src="../../static/js/template-bundle.js"></script>
-<script src="../../static/js/paginator.js"></script>
-<script src="../../static/js/tips-bomb.js"></script>
 <script type="text/javascript">
-    function deal_pruduct_list(data){
-        switch (data.code){
-            case ERRORCODE.SUCCESS:
-                $("#show_list_id").empty();
-                $(".product-list-table").siblings(".empty").addClass("hidden");
-                $("#total").text(data.total);
-                if(data["products"].length > 0){
-                    var html = template('product/product-list', data);
-                    $("#show_list_id").html(html);
-                }else{
-                    $(".empty.hidden").removeClass("hidden");
-                }
-                break;
-            default:
-                //异常判断
-                noticeMsg(data.msg_cn);
-        }
-    }
-
-    $(function(){
-        var page_size = $("#page_size").val();
-        $('#show_list_id').paginator({
-            url: PRODUCT_HOST + "/api/code/product/product-list/",
-            page_size: page_size,
-            ajax_finish_func: deal_pruduct_list
-        });
-        $("select[name=status]").change(function(){
-            $("#show_list_id").paginator("change_data", [{"status": $("select[name=status]").val()}]);
-        });
+    $(function () {
+        $.ajax({
+          ype: 'get',
+            datatype: 'json',
+            data: {},
+            url: 'http://127.0.0.1/api/test_manager/api_manager/api_list/',
+            success: function (data) {
+                new Vue({
+                    el: '#apiData',
+                    data: {
+                        apiData:data.api_list,
+                    },
+                    methods: {
+                        remove: function (project, index) {
+                            var rowObject = this;
+                            deleteProject(rowObject, project, index);
+                        }
+                    }
+                })
+            },
+            error: function () {
+                alert('失败')
+            }
+        })
     })
+    // function deal_pruduct_list(data){
+    //     switch (data.code){
+    //         case ERRORCODE.SUCCESS:
+    //             $("#show_list_id").empty();
+    //             $(".product-list-table").siblings(".empty").addClass("hidden");
+    //             $("#total").text(data.total);
+    //             if(data["products"].length > 0){
+    //                 var html = template('product/product-list', data);
+    //                 $("#show_list_id").html(html);
+    //             }else{
+    //                 $(".empty.hidden").removeClass("hidden");
+    //             }
+    //             break;
+    //         default:
+    //             //异常判断
+    //             noticeMsg(data.msg_cn);
+    //     }
+    // }
+    //
+    // $(function(){
+    //     var page_size = $("#page_size").val();
+    //     $('#show_list_id').paginator({
+    //         url: PRODUCT_HOST + "/api/code/product/product-list/",
+    //         page_size: page_size,
+    //         ajax_finish_func: deal_pruduct_list
+    //     });
+    //     $("select[name=status]").change(function(){
+    //         $("#show_list_id").paginator("change_data", [{"status": $("select[name=status]").val()}]);
+    //     });
+    // })
 </script>
 </body>
 </html>
