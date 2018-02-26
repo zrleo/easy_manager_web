@@ -34,11 +34,14 @@
                                             <li>
                                                 <div class="product-brands-box">
                                                     <p class="input-title create-ul-h5">项目<span class="red-color">*</span></p>
+
                                                     <div class="brands-box" id="form-control-create">
                                                         <select class="form-control-create" name="project_id" id="project_select" onclick="projectChange()">
                                                             <option v-for="project in project_select" v-bind:value="project.project_id">{{project.project_name}}</option>
                                                         </select>
+                                                        <input type="hidden" value="" name="project_name" id="project_name">
                                                     </div>
+
                                                     <a href="../project/add-project.html" class="new-brands">添加新项目</a>
                                                 </div>
                                             </li>
@@ -46,14 +49,14 @@
                                                 <div class="search-bar"></div>
                                                 请选择接口请求方法
                                                 <select class="form-control-sel m-b" id="method_select" name="request_method" onclick="methodChange()">
-                                                    <option value="0">POST</option>
-                                                    <option value="1">GET</option>
-                                                    <option value="2">PUT</option>
-                                                    <option value="10">DELETE</option>
-                                                    <option value="11">HEAD</option>
-                                                    <option value="20">CONNECT</option>
-                                                    <option value="30">OPTIONS</option>
-                                                    <option value="40">TRACE</option>
+                                                    <option value="POST">POST</option>
+                                                    <option value="GET">GET</option>
+                                                    <option value="PUT">PUT</option>
+                                                    <option value="DELETE">DELETE</option>
+                                                    <option value="HEAD">HEAD</option>
+                                                    <option value="CONNECT">CONNECT</option>
+                                                    <option value="OPTIONS">OPTIONS</option>
+                                                    <option value="TRACE">TRACE</option>
                                                 </select>
                                             </li>
                                             <li>
@@ -152,13 +155,25 @@
 
     function projectChange() {
         $("#project_select option:selected").val();
-    }
+        var options=$("#project_select option:selected").text();
+        console.log(options);
+        document.getElementById("project_name").value = options;
+
+    };
+
+    // $(function () {
+    //     var options=$("#project_select option:selected").text();
+    //     // document.getElementById("project_name").value = options;
+    //     $("#project-name").value = options;
+    // });
+
     function methodChange() {
-        $("#method_select option:selected").val();
+        $("#method_select option:selected").text();
     }
     $(function () {
         get_project_list();
     });
+
     function get_project_list(){
         $.ajax({
             type:"get",
